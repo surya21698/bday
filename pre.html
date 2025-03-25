@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<!-- Coding By CodingNepal - youtube.com/codingnepal -->
+<html lang="en">
+
+<script language="javascript">
+<!--hide
+var password;
+var pass1="VR 47"
+password=prompt('','');
+if (password==pass1)
+alert('For you my dear ❤️');
+else
+{window.location="https://nothing-close-it.w3spaces.com";
+}
+//-->
+
+</script>
+
+
+
+
+
+<script>
+	
+	function showfunc() {
+		var x = document.getElementById("playbtn");
+		var txt = document.getElementById("first");
+		var vide = document.getElementById("video");
+		
+		if (txt.style.display === "none")
+		{
+		
+		txt.style.display = "block";
+		vide.style.display = "none";
+		const video = document.querySelector("#video");
+
+			video.pause();
+   video.autoplay = false;
+			video.currentTime = 0;
+		
+		}
+		
+		else {
+		
+		txt.style.display = "none";
+		vide.style.display = "block";
+		
+		const video = document.querySelector("#video");
+
+			video.play();
+   video.autoplay = true;
+		
+		}
+
+		
+	}
+	
+</script>
+
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PRESENT FOR YOU</title>
+  <link rel="stylesheet" href="prestyle.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+</head>
+
+<body>
+ <div class="wrapper">
+	<div id="first" class="text">
+		<img src="imagespre/text.png" >
+    </div>	
+	<div>
+		<video class="vid" id ="video" width="300" loop>
+			<source src="https://drive.google.com/uc?export=download&id=1mYmvOxW_uYpqEgJjSkKLUXQV_b5_Dshb" type='video/mp4'>
+		</video>
+	</div>
+	
+    	<img id="playbtn" class="play" width="100" src="imagespre/play.png" onClick="showfunc()" >
+    
+</div>
+
+</body>
+</html>
