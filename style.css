@@ -488,20 +488,28 @@ body {
 }
 
 .container {
-	display: grid;
-	grid-template-columns: 1fr 1fr;
-	border-radius: 10px;
-	overflow: hidden;
+	background: #121212;
+    padding: 20px;
+    border-radius: 12px;
+    text-align: center;
+    color: white;
+    width: 400px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+	font-size: 22px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
 }
 
 .block {
-	width: 180px;
-	height: 160px;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	text-align: center;
-	color: #fff;
+	background: #1e1e1e;
+    padding: 15px;
+    border-radius: 8px;
+    width: 80px;
+    text-align: center;
+	
 }
 
 .days {
