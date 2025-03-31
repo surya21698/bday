@@ -13,9 +13,9 @@ canvas {display: block; position: absolute; /* touch-action: none;*/ top: 0;left
 .slide-container { margin: auto; width: 600px; text-align: center; max-width: 100%; } 
 .wrapper { padding-top: 40px; padding-bottom: 40px; } 
 .wrapper:focus { outline: 0; } 
-.clash-card { background: white; width: 300px; display: inline-block; margin: auto; border-radius: 19px; position: relative; text-align: center; box-shadow: -1px 15px 30px -12px black; z-index: 99; }
+.clash-card { background: white; width: 60vh; display: inline-block; margin: auto; border-radius: 19px; position: relative; text-align: center; box-shadow: -1px 15px 30px -12px black; z-index: 99; }
 
-.barbarian { height: 500px; background: rgb(4, 36, 47); background: linear-gradient(90deg, rgba(4, 36, 47, 1) 0%, rgba(2, 45, 61, 1) 46%, rgba(4, 36, 47, 1) 100%); position: relative; overflow: hidden; } 
+.barbarian { height: 80vh; background: rgb(4, 36, 47); background: linear-gradient(90deg, rgba(4, 36, 47, 1) 0%, rgba(2, 45, 61, 1) 46%, rgba(4, 36, 47, 1) 100%); position: relative; overflow: hidden; } 
 .leaf { background-image: url(leaf.png); background-size: contain; background-repeat: no-repeat; width: 100%; height: 100%; position: absolute; top: -20px; } 
 .letter-box { position: absolute; top: 30%; width: 100%; font-size: 20px; letter-spacing: 0.5px; }
 .invitee { margin-bottom: 25px; font-size: 14px; margin-top: 20px;}
