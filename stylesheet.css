@@ -968,6 +968,11 @@ audio {
 	display: none;
 }
 
+
+
+
+
+
 .bannar {
 	opacity: 0;
 	width: 100%;
@@ -1291,6 +1296,20 @@ audio {
 	display: none;
 	font-weight: bold;
 }
+
+
+
+    /* Swipeable area */
+    #swipeArea {
+	  opacity: 1;
+      position: fixed;
+      left: 0;
+      width: 100%;
+     height: 5%;
+    bottom: 10%;
+      background-color: rgba(255 0 0 / 20%); /* Semi-transparent */
+      cursor: pointer;
+    }
 
 .btn-primary {
         border-color: #466baf;
