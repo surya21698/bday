@@ -21,8 +21,6 @@ $('document').ready(function(){
 
    // Function that simulates the button click behavior
     function triggerAction() {
-
-		
       var audio = $('.song')[0];
       audio.play();
       $('#bulb_yellow').addClass('bulb-glow-yellow');
@@ -61,7 +59,7 @@ $('document').ready(function(){
 		loopSeven();
 		setTimeout(function() {
     document.getElementById('swipeArea').style.opacity = '0';
-}, 1);
+		}, 1);
 
 		
 		
