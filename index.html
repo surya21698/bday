@@ -5,22 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Birthday Animation</title>
   <style>
-  
-  
-  
-  
-  
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-    html, body {
-      width: 100%;
-      height: 100%;
-      overflow: hidden;
-      font-family: 'Arial', sans-serif;
-    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body { width: 100%; height: 100%; overflow: hidden; font-family: 'Arial', sans-serif; }
 
     .sky {
       position: relative;
@@ -29,204 +15,268 @@
       background: linear-gradient(to bottom, #aee1f9, #ffffff);
       overflow: hidden;
     }
-	
-	
-.bear {
-  position: absolute;
-  width: 25vw;
-  top: -30vh;
-  right: -30vw;
-  animation: moveBear 6s ease-out forwards, bearSwing 4s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite;
-  animation-delay: 0s, 0s;
-  transform-origin: 50% 0%;
-  z-index: 10;
-}
 
+    .bear {
+      position: absolute;
+      width: 25vw;
+      top: -30vh;
+      right: -30vw;
+      animation: moveBear 2s ease-out forwards, bearSwing 4s ease-in-out infinite;
+      animation-delay: 1s, 4s;
+      transform-origin: 50% 0%;
+      z-index: 10;
+    }
 
     @keyframes moveBear {
-      0% {
-        top: -30vh;
-        right: -30vw;
-      }
-      100% {
-        top: 0vh;
-        right: 0vw;
-      }
+      0% { top: -30vh; right: -30vw; }
+      100% { top: 0vh; right: 0vw; }
     }
-@keyframes bearSwing {
-  0%   { transform: rotate(0deg); }
-  20%  { transform: rotate(1.5deg); }
-  50%  { transform: rotate(0deg); }
-  80%  { transform: rotate(-1.5deg); }
-  100% { transform: rotate(0deg); }
-}
 
-	
-	
-	
+    @keyframes bearSwing {
+      0%, 100% { transform: rotate(0deg); }
+      25% { transform: rotate(1.5deg); }
+      75% { transform: rotate(-1.5deg); }
+    }
 
-    .cloud, .layer {
+    .cloud, .cloud-left {
       position: absolute;
-      animation: moveCloud 60s linear infinite, squish 3s ease-in-out infinite alternate;
+      animation: moveCloud 5s linear infinite, squish 3s ease-in-out infinite alternate;
+      animation-delay: 0s, 0s;
       z-index: 2;
     }
 
     .cloud {
-      width: 15vw;
-      top: 15vh;
       left: 100%;
-      animation-duration: 80s, 3s;
+      animation-name: moveCloud, squish;
     }
 
-    .layer {
-      width: 25vw;
-      top: 40vh;
-      left: 100%;
-      animation: moveCloud 100s linear infinite, swing 5s ease-in-out infinite;
-      z-index: 3;
+    .cloud-left {
+      left: -30vw;
+      animation-name: moveCloudLeft, squish;
     }
 	
-.layer-left {
-  animation: moveCloudLeft 90s linear infinite, swing 5s ease-in-out infinite;
-}
-	
-	
-	
-	
-.cloud-left, .layer-left {
+	.cloud-static {
   position: absolute;
-  animation: moveCloudLeft 70s linear infinite, squish 3s ease-in-out infinite alternate;
   z-index: 2;
+  animation: driftCloud 6s ease-in-out infinite;
 }
 
+	
+	/* Gently floating clouds (stationary with slight movement) */
+@keyframes driftCloud {
+  0%, 100% { transform: translateX(0) scale(1, 1); }
+  25% { transform: translateX(-5px) scale(1.05, 0.95); }
+  50% { transform: translateX(5px) scale(0.95, 1.05); }
+  75% { transform: translateX(-3px) scale(1.02, 0.98); }
+}
 
+.airplane-layer {
+  position: absolute;
+  width: 20vw;
+  top: 45vh;
+  left: -40vw; /* Start off screen on the left */
+  opacity: 0.5;
+  z-index: 4;
+  animation: airplaneFlyRight 15s linear forwards, airplaneFloat 2s ease-in-out infinite;
+  animation-delay: 0s; /* Start after text animation */
+}
 
-@keyframes moveCloudLeft {
+@keyframes airplaneFlyRight {
   0%   { left: -30vw; }
   100% { left: 100vw; }
 }
-	
-	
-	
+
+@keyframes airplaneFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-5px); }
+}
+
+@keyframes slideInRight {
+  0% { right: -30vw; opacity: 0; }
+  100% { right: var(--final-right); opacity: 0.5; }
+}
+
+@keyframes slideInLeft {
+  0% { left: -30vw; opacity: 0; }
+  100% { left: var(--final-left); opacity: 0.4; }
+}
+
+
+
+
+.layer-right {
+  position: absolute;
+  animation: slideInRight var(--slide-duration) ease-out forwards,
+             floatUpDown 10s ease-in-out infinite,
+             swing 3s ease-in-out infinite,
+             squish 1.5s ease-in-out infinite;
+  animation-delay: var(--slide-delay), 0s, 0s, 0s;
+  z-index: 3;
+  top: var(--top);
+  right: var(--final-right);
+  opacity: 0.5;
+}
+
+
+.layer-left {
+  position: absolute;
+  animation: slideInLeft var(--slide-duration) ease-out forwards,
+             floatUpDown 10s ease-in-out infinite,
+             swing 3s ease-in-out infinite,
+             squish 1.5s ease-in-out infinite;
+  animation-delay: var(--slide-delay), 0s, 0s, 0s;
+  z-index: 3;
+  top: var(--top);
+  left: var(--final-left);
+  opacity: 0;
+}
+
+
+
+
+
 
     @keyframes moveCloud {
-      0% { left: 100%; }
+      0% { left: 100vw; }
       100% { left: -30vw; }
     }
 
+    @keyframes moveCloudLeft {
+      0% { left: -30vw; }
+      100% { left: 100vw; }
+    }
+
     @keyframes squish {
-      0% { transform: scale(1, 1); }
+      0%, 100% { transform: scale(1, 1); }
       50% { transform: scale(1.1, 0.9); }
-      100% { transform: scale(1, 1); }
     }
 
     @keyframes swing {
-      0% { transform: rotate(0deg); }
+      0%, 100% { transform: rotate(0deg); }
       50% { transform: rotate(2deg); }
-      100% { transform: rotate(-2deg); }
     }
 
+    @keyframes floatUpDown {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
 
-	.text {
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  font-size: clamp(16px, 5vw, 32px);
-  font-weight: bold;
-  color: white;
-  text-shadow: 2px 2px 5px black;
-  opacity: 0;
-  animation: dropText 1s ease-out forwards;
-  z-index: 20;
-  white-space: nowrap;
-}
-	
-.text:nth-of-type(1) { top: 18vh; animation-delay: 2s; }
-.text:nth-of-type(2) { top: 25vh; animation-delay: 2.5s; }
-.text:nth-of-type(3) { top: 32vh; animation-delay: 3s; }
-.text:nth-of-type(4) { top: 38vh; animation-delay: 3.5s; }
-.text:nth-of-type(5) { top: 44vh; animation-delay: 4s; }
-.text:nth-of-type(6) { top: 50vh; animation-delay: 4.5s; }
-.text:nth-of-type(7) { top: 56vh; animation-delay: 5s; }
-.text:nth-of-type(8) { top: 62vh; animation-delay: 5.5s; }
-.text:nth-of-type(9) { top: 68vh; animation-delay: 6s; }
-.text:nth-of-type(10) { top: 704vh; animation-delay: 6.5s; }
-.text:nth-of-type(11) { top: 710vh; animation-delay: 7s; }
+    .text {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: clamp(16px, 5vw, 32px);
+      font-weight: bold;
+      color: white;
+      text-shadow: 2px 2px 5px black;
+      opacity: 0;
+      animation: dropText 1s ease-out forwards;
+      z-index: 20;
+      white-space: nowrap;
+    }
 
-	
-	
-	
+    .text:nth-of-type(1) { top: 18vh; animation-delay: 9s; }
+    .text:nth-of-type(2) { top: 25vh; animation-delay: 9.5s; }
+    .text:nth-of-type(3) { top: 32vh; animation-delay: 10s; }
+    .text:nth-of-type(4) { top: 38vh; animation-delay: 10.5s; }
+    .text:nth-of-type(5) { top: 44vh; animation-delay: 11s; }
+    .text:nth-of-type(6) { top: 50vh; animation-delay: 11.5s; }
+    .text:nth-of-type(7) { top: 56vh; animation-delay: 12s; }
+    .text:nth-of-type(8) { top: 62vh; animation-delay: 12.5s; }
+    .text:nth-of-type(9) { top: 68vh; animation-delay: 13s; }
+    .text:nth-of-type(10) { top: 74vh; animation-delay: 13.5s; }
+    .text:nth-of-type(11) { top: 80vh; animation-delay: 14s; }
 
     @keyframes dropText {
-      0% {
-        transform: translateX(-50%) translateY(-50px);
-        opacity: 0;
-      }
-      100% {
-        transform: translateX(-50%) translateY(0);
-        opacity: 1;
-      }
+      0% { transform: translateX(-50%) translateY(-50px); opacity: 0; }
+      100% { transform: translateX(-50%) translateY(0); opacity: 1; }
     }
 
- /* 📱 Mobile Tweaks */
-@media (max-width: 600px) {
-  .bear { width: 35vw; }
-  .cloud { width: 20vw; }
-  .layer { width: 28vw; }
+    @media (max-width: 600px) {
+      .bear { width: 35vw; }
+      .cloud, .cloud-left { width: 20vw; }
+      .layer, .layer-left { width: 28vw; }
+    }
+	
+	
+	@keyframes slideInRight {
+  0% {
+    right: -30vw;
+    transform: rotate(5deg);
+    opacity: 0;
+  }
+  100% {
+    right: var(--final-right);
+    transform: rotate(0deg);
+    opacity: 0.5;
+  }
 }
 
+@keyframes slideInLeft {
+  0% {
+    left: -30vw;
+    transform: rotate(-5deg);
+    opacity: 0;
+  }
+  100% {
+    left: var(--final-left);
+    transform: rotate(0deg);
+    opacity: 0.4;
+  }
+}
 
-
-
-
-
-
-
+	
+	
 	
   </style>
 </head>
 <body>
   <div class="sky">
     <!-- Bear -->
-    <img src="bear.png" class="bear" alt="Bear Balloon" />
+    <img src="bear.png" class="bear" alt="Bear Balloon"  />
 	
 	
-	<!-- CLOUDS (RIGHT TO LEFT) -->
-<img src="small-cloud.png" class="cloud" style="top: 10vh; width: 14vw; opacity: 0.6; animation-duration: 80s, 2.5s;" />
-<img src="small-cloud.png" class="cloud" style="top: 30vh; width: 18vw; opacity: 0.5; animation-duration: 90s, 3s;" />
-
-<!-- CLOUDS (LEFT TO RIGHT) -->
-<img src="small-cloud.png" class="cloud-left" style="top: 20vh; width: 12vw; opacity: 0.7; animation-duration: 70s, 2.7s;" />
-<img src="small-cloud.png" class="cloud-left" style="top: 50vh; width: 20vw; opacity: 0.4; animation-duration: 85s, 3s;" />
-
-<!-- LAYERS (RIGHT TO LEFT) -->
-
-<img src="Layer-3.png" class="layer" style="top: 50vh; width: 25vw; opacity: 0.5; animation-duration: 110s, 3.8s;" />
-<img src="Layer-3.png" class="layer" style="top: 15vh; width: 25vw; opacity: 0.6; animation-duration: 100s, 4s;" />
-
-
-
-
-<!-- LAYERS (LEFT TO RIGHT) -->
-<img src="Layer-3.png" class="layer-left" style="top: 5vh; width: 22vw; opacity: 0.6; animation-duration: 100s, 4s;" />
-<img src="Layer-3.png" class="layer-left" style="top: 35vh; width: 20vw; opacity: 0.5; animation-duration: 110s, 4s;" />
+	<!-- Airplane layer (teddy bear in airplane) -->
+<img src="aircaraft.png" class="airplane-layer" style="opacity: 0.5;" />
 
 	
+	
+<!-- Stationary drifting clouds -->
+	<img src="small-cloud.png" class="cloud-static" style="top: 25vh; left: 40vw; width: 30vw; opacity: 0.5; animation: driftCloud 6s ease-in-out infinite;" />
+	<img src="small-cloud.png" class="cloud-static" style="top: 55vh; left: 80vw; width: 30vw; opacity: 0.4; animation: driftCloud 8s ease-in-out infinite;" />
+	<img src="small-cloud.png" class="cloud-static" style="top: -8vh; left: -14vw; width: 48vw; opacity: 1; animation: driftCloud 6s ease-in-out infinite;" />
+	<img src="small-cloud.png" class="cloud-static" style="top: 55vh; left: -20vw; width: 40vw; opacity: 0.4; animation: driftCloud 8s ease-in-out infinite;" />
+	
+	<img src="small-cloud.png" class="cloud-static" style="top: 35vh; left: 90vw; width: 18vw; opacity: 0.5; animation: driftCloud 6s ease-in-out infinite;" />
+	<img src="small-cloud.png" class="cloud-static" style="top: -2vh; left: 55vw; width: 20vw; opacity: 0.5; animation: driftCloud 6s ease-in-out infinite;" />
+	<img src="small-cloud.png" class="cloud-static" style="top: 25vh; left: 2vw; width: 20vw; opacity: 0.5; animation: driftCloud 6s ease-in-out infinite;" />
 
 
+    <!-- Clouds -->
+    <img src="small-cloud.png" class="cloud" style="top: 10vh; width: 14vw; opacity: 0.5; animation-duration: 25s, 2.5s;" />
+    <img src="small-cloud.png" class="cloud-left" style="top: 20vh; width: 12vw; opacity: 0.5; animation-duration: 18s, 2.7s;" />
+	<img src="small-cloud.png" class="cloud-left" style="top: 18vh; width: 12vw; opacity: 0.5; animation-duration: 18s, 2.7s; animation-delay: 7s; " />
+	
+    <img src="small-cloud.png" class="cloud" style="top: 45vh; width: 18vw; opacity: 0.5; animation-duration: 30s, 3s;" />
+    <img src="small-cloud.png" class="cloud-left" style="top: 38vh; width: 20vw; opacity: 0.4; animation-duration: 25s, 3s;" />
 
-    <!-- Text Layers -->
-    <div class="text" style="animation-delay: 2s;">Our little prince</div>
-    <div class="text" style="animation-delay: 2.5s;">Is Turning</div>
-    <div class="text" style="animation-delay: 3s;">ONE</div>
-    <div class="text" style="animation-delay: 3.5s;">Please Join Us To Celebrate</div>
-    <div class="text" style="animation-delay: 4s;">Magizh Mithran’s</div>
-    <div class="text" style="animation-delay: 4.5s;">Birthday Party</div>
-    <div class="text" style="animation-delay: 5s;">On</div>
-    <div class="text" style="animation-delay: 5.5s;">MAY</div>
-    <div class="text" style="animation-delay: 6s;">20th</div>
-    <div class="text" style="animation-delay: 6.5s;">At</div>
-    <div class="text" style="animation-delay: 7s;">7PM</div>
+
+	
+	<!-- Right-side layers -->
+	
+	<img src="Layer-3.png" class="layer-right layer-float layer-rotate" style="--top: 45vh; --final-right: 5vw; --slide-duration: 3s; --slide-delay: 0s; width: 10vw; z-index: 1;" />
+	<img src="Layer-3.png" class="layer-right layer-float layer-rotate" style="--top: -2vh; --final-right: 48vw; --slide-duration: 6s; --slide-delay: 0s; width: 10vw; z-index: 1;" />
+
+	<img src="Layer-3.png" class="layer-right layer-float" style="--top: 30vh;  --final-right: 22vw; --slide-duration: 4s; --slide-delay: 0.2s; width: 18vw; z-index: 1; " />
+
+	<!-- Left-side layers -->
+	<img src="Layer-3.png" class="layer-left layer-float" style="--top: -4vh;  --final-left: 0vw; --slide-duration: 2.2s; --slide-delay: 0.1s; width: 28vw;  z-index: 1;" />
+	<img src="Layer-3.png" class="layer-left layer-float" style="--top: 36vh;  --final-left: -10vw; --slide-duration: 2.8s; --slide-delay: 0.3s; width: 24vw; z-index: 1;" />
+	<img src="Layer-3.png" class="layer-left layer-float" style="--top: 65vh;  --final-left: 20vw; --slide-duration: 4s; --slide-delay: 0.1s; width: 10vw;  z-index: 1;" />
+
+
   </div>
+  
+  
 </body>
 </html>
