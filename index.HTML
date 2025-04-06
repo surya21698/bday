@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Birthday Animation</title>
+  <style>
+  
+  
+  
+  
+  
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    html, body {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      font-family: 'Arial', sans-serif;
+    }
+
+    .sky {
+      position: relative;
+      width: 100vw;
+      height: 100vh;
+      background: linear-gradient(to bottom, #aee1f9, #ffffff);
+      overflow: hidden;
+    }
+	
+	
+.bear {
+  position: absolute;
+  width: 25vw;
+  top: -30vh;
+  right: -30vw;
+  animation: moveBear 6s ease-out forwards, bearSwing 4s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite;
+  animation-delay: 0s, 0s;
+  transform-origin: 50% 0%;
+  z-index: 10;
+}
+
+
+    @keyframes moveBear {
+      0% {
+        top: -30vh;
+        right: -30vw;
+      }
+      100% {
+        top: 0vh;
+        right: 0vw;
+      }
+    }
+@keyframes bearSwing {
+  0%   { transform: rotate(0deg); }
+  20%  { transform: rotate(1.5deg); }
+  50%  { transform: rotate(0deg); }
+  80%  { transform: rotate(-1.5deg); }
+  100% { transform: rotate(0deg); }
+}
+
+	
+	
+	
+
+    .cloud, .layer {
+      position: absolute;
+      animation: moveCloud 60s linear infinite, squish 3s ease-in-out infinite alternate;
+      z-index: 2;
+    }
+
+    .cloud {
+      width: 15vw;
+      top: 15vh;
+      left: 100%;
+      animation-duration: 80s, 3s;
+    }
+
+    .layer {
+      width: 25vw;
+      top: 40vh;
+      left: 100%;
+      animation: moveCloud 100s linear infinite, swing 5s ease-in-out infinite;
+      z-index: 3;
+    }
+	
+.layer-left {
+  animation: moveCloudLeft 90s linear infinite, swing 5s ease-in-out infinite;
+}
+	
+	
+	
+	
+.cloud-left, .layer-left {
+  position: absolute;
+  animation: moveCloudLeft 70s linear infinite, squish 3s ease-in-out infinite alternate;
+  z-index: 2;
+}
+
+
+
+@keyframes moveCloudLeft {
+  0%   { left: -30vw; }
+  100% { left: 100vw; }
+}
+	
+	
+	
+
+    @keyframes moveCloud {
+      0% { left: 100%; }
+      100% { left: -30vw; }
+    }
+
+    @keyframes squish {
+      0% { transform: scale(1, 1); }
+      50% { transform: scale(1.1, 0.9); }
+      100% { transform: scale(1, 1); }
+    }
+
+    @keyframes swing {
+      0% { transform: rotate(0deg); }
+      50% { transform: rotate(2deg); }
+      100% { transform: rotate(-2deg); }
+    }
+
+
+	.text {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: clamp(16px, 5vw, 32px);
+  font-weight: bold;
+  color: white;
+  text-shadow: 2px 2px 5px black;
+  opacity: 0;
+  animation: dropText 1s ease-out forwards;
+  z-index: 20;
+  white-space: nowrap;
+}
+	
+.text:nth-of-type(1) { top: 18vh; animation-delay: 2s; }
+.text:nth-of-type(2) { top: 25vh; animation-delay: 2.5s; }
+.text:nth-of-type(3) { top: 32vh; animation-delay: 3s; }
+.text:nth-of-type(4) { top: 38vh; animation-delay: 3.5s; }
+.text:nth-of-type(5) { top: 44vh; animation-delay: 4s; }
+.text:nth-of-type(6) { top: 50vh; animation-delay: 4.5s; }
+.text:nth-of-type(7) { top: 56vh; animation-delay: 5s; }
+.text:nth-of-type(8) { top: 62vh; animation-delay: 5.5s; }
+.text:nth-of-type(9) { top: 68vh; animation-delay: 6s; }
+.text:nth-of-type(10) { top: 704vh; animation-delay: 6.5s; }
+.text:nth-of-type(11) { top: 710vh; animation-delay: 7s; }
+
+	
+	
+	
+
+    @keyframes dropText {
+      0% {
+        transform: translateX(-50%) translateY(-50px);
+        opacity: 0;
+      }
+      100% {
+        transform: translateX(-50%) translateY(0);
+        opacity: 1;
+      }
+    }
+
+ /* 📱 Mobile Tweaks */
+@media (max-width: 600px) {
+  .bear { width: 35vw; }
+  .cloud { width: 20vw; }
+  .layer { width: 28vw; }
+}
+
+
+
+
+
+
+
+
+	
+  </style>
+</head>
+<body>
+  <div class="sky">
+    <!-- Bear -->
+    <img src="bear.png" class="bear" alt="Bear Balloon" />
+	
+	
+	<!-- CLOUDS (RIGHT TO LEFT) -->
+<img src="small-cloud.png" class="cloud" style="top: 10vh; width: 14vw; opacity: 0.6; animation-duration: 80s, 2.5s;" />
+<img src="small-cloud.png" class="cloud" style="top: 30vh; width: 18vw; opacity: 0.5; animation-duration: 90s, 3s;" />
+
+<!-- CLOUDS (LEFT TO RIGHT) -->
+<img src="small-cloud.png" class="cloud-left" style="top: 20vh; width: 12vw; opacity: 0.7; animation-duration: 70s, 2.7s;" />
+<img src="small-cloud.png" class="cloud-left" style="top: 50vh; width: 20vw; opacity: 0.4; animation-duration: 85s, 3s;" />
+
+<!-- LAYERS (RIGHT TO LEFT) -->
+
+<img src="Layer-3.png" class="layer" style="top: 50vh; width: 25vw; opacity: 0.5; animation-duration: 110s, 3.8s;" />
+<img src="Layer-3.png" class="layer" style="top: 15vh; width: 25vw; opacity: 0.6; animation-duration: 100s, 4s;" />
+
+
+
+
+<!-- LAYERS (LEFT TO RIGHT) -->
+<img src="Layer-3.png" class="layer-left" style="top: 5vh; width: 22vw; opacity: 0.6; animation-duration: 100s, 4s;" />
+<img src="Layer-3.png" class="layer-left" style="top: 35vh; width: 20vw; opacity: 0.5; animation-duration: 110s, 4s;" />
+
+	
+
+
+
+    <!-- Text Layers -->
+    <div class="text" style="animation-delay: 2s;">Our little prince</div>
+    <div class="text" style="animation-delay: 2.5s;">Is Turning</div>
+    <div class="text" style="animation-delay: 3s;">ONE</div>
+    <div class="text" style="animation-delay: 3.5s;">Please Join Us To Celebrate</div>
+    <div class="text" style="animation-delay: 4s;">Magizh Mithran’s</div>
+    <div class="text" style="animation-delay: 4.5s;">Birthday Party</div>
+    <div class="text" style="animation-delay: 5s;">On</div>
+    <div class="text" style="animation-delay: 5.5s;">MAY</div>
+    <div class="text" style="animation-delay: 6s;">20th</div>
+    <div class="text" style="animation-delay: 6.5s;">At</div>
+    <div class="text" style="animation-delay: 7s;">7PM</div>
+  </div>
+</body>
+</html>
