@@ -78,7 +78,7 @@
   opacity: 0.5;
   z-index: 4;
   animation: airplaneFlyRight 15s linear forwards, airplaneFloat 2s ease-in-out infinite;
-  animation-delay: 0s; /* Start after text animation */
+  animation-delay: 0s; 
 }
 
 @keyframes airplaneFlyRight {
@@ -160,37 +160,245 @@
       0%, 100% { transform: translateY(0); }
       50% { transform: translateY(-10px); }
     }
+	
+	
+.text {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: clamp(16px, 5vw, 32px);
+  font-weight: bold;
+  color: white;
+  text-shadow: 2px 2px 5px black;
+  opacity: 0;
+  z-index: 20;
+  white-space: nowrap;
+}
 
-    .text {
-      position: absolute;
-      left: 50%;
-      transform: translateX(-50%);
-      font-size: clamp(16px, 5vw, 32px);
-      font-weight: bold;
-      color: white;
-      text-shadow: 2px 2px 5px black;
-      opacity: 0;
-      animation: dropText 1s ease-out forwards;
-      z-index: 20;
-      white-space: nowrap;
-    }
 
-    .text:nth-of-type(1) { top: 18vh; animation-delay: 9s; }
-    .text:nth-of-type(2) { top: 25vh; animation-delay: 9.5s; }
-    .text:nth-of-type(3) { top: 32vh; animation-delay: 10s; }
-    .text:nth-of-type(4) { top: 38vh; animation-delay: 10.5s; }
-    .text:nth-of-type(5) { top: 44vh; animation-delay: 11s; }
-    .text:nth-of-type(6) { top: 50vh; animation-delay: 11.5s; }
-    .text:nth-of-type(7) { top: 56vh; animation-delay: 12s; }
-    .text:nth-of-type(8) { top: 62vh; animation-delay: 12.5s; }
-    .text:nth-of-type(9) { top: 68vh; animation-delay: 13s; }
-    .text:nth-of-type(10) { top: 74vh; animation-delay: 13.5s; }
-    .text:nth-of-type(11) { top: 80vh; animation-delay: 14s; }
+@keyframes throwText {
+  0% {
+    transform: translate(-100%, -100%) scaleX(0.1) scaleY(1.2) rotate(-30deg);
+    opacity: 0.3;
+  }
+  50% {
+    transform: translate(-40%, -50%) scaleX(0.2) scaleY(0.7) rotate(30deg);
+    opacity: 0.6;
+  }
+  70% {
+    transform: translate(-25%, -50%) scaleX(0.2) scaleY(0.7) rotate(15deg);
+    opacity: 0.6;
+  }
+  100% {
+    transform: translateX(-50%) translateY(0) scale(1) rotate(0deg);
+    opacity: 1;
+  }
+}
 
-    @keyframes dropText {
-      0% { transform: translateX(-50%) translateY(-50px); opacity: 0; }
-      100% { transform: translateX(-50%) translateY(0); opacity: 1; }
-    }
+@keyframes rainbowShimmer {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 100% 50%;
+  }
+}
+
+.text-1 {
+  position: absolute;
+  top: 18vh;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: clamp(16px, 5vw, 32px);
+  font-weight: bold;
+  opacity: 0;
+  color: white;
+  padding: 0.2em 0.8em;
+  background: linear-gradient(
+    90deg,
+    red,
+    orange,
+    yellow,
+    green,
+    blue,
+    indigo,
+    violet,
+    red
+  );
+  background-size: 400%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: throwText 1.8s ease-out forwards, rainbowShimmer 2.5s linear infinite;
+  animation-delay: 5s, 7s;
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+  z-index: 20;
+  white-space: nowrap;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.text-2 {
+  top: 25vh;
+ animation: scalePop 1s ease-out forwards;
+  animation-delay: 8.3s;
+}
+
+.text-3 {
+  top: 32vh;
+  animation: scalePop 1s ease-out forwards;
+  animation-delay: 9.3s;
+}
+
+.text-4 {
+  top: 38vh;
+  animation: fadeInUp 1s ease-out forwards;
+  animation-delay: 10s;
+}
+
+
+.text-5 {
+  position: absolute;
+  top: 42vh;
+  left: 39%;
+  transform: translateX(-50%);
+  font-size: clamp(16px, 8vw, 32px);
+  font-weight: bold;
+  opacity: 0;
+  color: white;
+  padding: 0.2em 0.8em;
+  background: linear-gradient(
+    90deg,
+    red,
+    orange,
+    yellow,
+    green,
+    blue,
+    indigo,
+    violet,
+    red
+  );
+  background-size: 400%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: throwText 2s ease-out forwards, rainbowShimmer 6.5s linear infinite;
+  animation-delay: 10.5s, 7s;
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+  z-index: 20;
+  white-space: nowrap;
+}
+
+
+
+
+.text-6 {
+  top: 50vh;
+  animation: swirlIn 1s ease-out forwards;
+  animation-delay: 10.8s;
+}
+
+.text-7 {
+  top: 56vh;
+  animation: bounceInLeft 1s ease-out forwards;
+  animation-delay: 11s;
+}
+
+.text-8 {
+  top: 62vh;
+  animation: bounceInRight 1s ease-out forwards;
+  animation-delay: 11.5s;
+}
+
+.text-9 {
+  top: 68vh;
+  animation: zoomIn 1s ease-out forwards;
+  animation-delay: 12s;
+}
+
+.text-10 {
+  top: 74vh;
+  animation: flipDown 1s ease-out forwards;
+  animation-delay: 12.5s;
+}
+
+.text-11 {
+  top: 80vh;
+  animation: scalePop 1s ease-out forwards;
+  animation-delay: 13s;
+}
+
+@keyframes slideDrop {
+  0% { transform: translateX(-50%) translateY(-50px); opacity: 0; }
+  100% { transform: translateX(-50%) translateY(0); opacity: 1; }
+}
+
+@keyframes bounceIn {
+  0% { transform: translateY(-80px); opacity: 0; }
+  60% { transform: translateY(10px); opacity: 1; }
+  100% { transform: translateY(0); }
+}
+
+@keyframes scalePop {
+  0% { transform: translateX(-50%) scale(0.3); opacity: 0; }
+  100% { transform: translateX(-50%) scale(1); opacity: 1; }
+}
+
+@keyframes fadeInUp {
+  0% { transform: translateX(-50%) translateY(40px); opacity: 0; }
+  100% { transform: translateX(-50%) translateY(0); opacity: 1; }
+}
+
+@keyframes flipIn {
+  0% { transform: translateX(-50%) rotateX(90deg); opacity: 0; }
+  100% { transform: translateX(-50%) rotateX(0); opacity: 1; }
+}
+
+@keyframes swirlIn {
+  0% { transform: translateX(-50%) rotate(-360deg) scale(0); opacity: 0; }
+  100% { transform: translateX(-50%) rotate(0) scale(1); opacity: 1; }
+}
+
+@keyframes bounceInLeft {
+  0% { transform: translateX(-300px); opacity: 0; }
+  100% { transform: translateX(-50%) translateY(0); opacity: 1; }
+}
+
+@keyframes bounceInRight {
+  0% { transform: translateX(300px); opacity: 0; }
+  100% { transform: translateX(-50%) translateY(0); opacity: 1; }
+}
+
+@keyframes zoomIn {
+  0% { transform: translateX(-50%) scale(0.2); opacity: 0; }
+  100% { transform: translateX(-50%) scale(1); opacity: 1; }
+}
+
+@keyframes flipDown {
+  0% { transform: translateX(-50%) rotateX(-90deg); opacity: 0; }
+  100% { transform: translateX(-50%) rotateX(0); opacity: 1; }
+}
+
+@keyframes pulseIn {
+  0% { transform: translateX(-50%) scale(1.3); opacity: 0; }
+  50% { transform: translateX(-50%) scale(0.95); opacity: 1; }
+  100% { transform: translateX(-50%) scale(1); }
+}
+
+
+
+
 
     @media (max-width: 600px) {
       .bear { width: 35vw; }
@@ -267,12 +475,34 @@
 	<img src="Layer-3.png" class="layer-right layer-float layer-rotate" style="--top: 45vh; --final-right: 5vw; --slide-duration: 3s; --slide-delay: 0s; width: 10vw; z-index: 1;" />
 	<img src="Layer-3.png" class="layer-right layer-float layer-rotate" style="--top: -2vh; --final-right: 48vw; --slide-duration: 6s; --slide-delay: 0s; width: 10vw; z-index: 1;" />
 
-	<img src="Layer-3.png" class="layer-right layer-float" style="--top: 30vh;  --final-right: 22vw; --slide-duration: 4s; --slide-delay: 0.2s; width: 18vw; z-index: 1; " />
+	<img src="Layer-3.png" class="layer-right layer-float" style="--top: 30vh;  --final-right: 16vw; --slide-duration: 4s; --slide-delay: 0.2s; width: 18vw; z-index: 1; " />
 
 	<!-- Left-side layers -->
 	<img src="Layer-3.png" class="layer-left layer-float" style="--top: -4vh;  --final-left: 0vw; --slide-duration: 2.2s; --slide-delay: 0.1s; width: 28vw;  z-index: 1;" />
 	<img src="Layer-3.png" class="layer-left layer-float" style="--top: 36vh;  --final-left: -10vw; --slide-duration: 2.8s; --slide-delay: 0.3s; width: 24vw; z-index: 1;" />
 	<img src="Layer-3.png" class="layer-left layer-float" style="--top: 65vh;  --final-left: 20vw; --slide-duration: 4s; --slide-delay: 0.1s; width: 10vw;  z-index: 1;" />
+
+
+
+    <!-- Text -->
+<div class="text text-1">Our little prince</div>
+<div class="text text-2">Is Turning</div>
+<div class="text text-3">ONE</div>
+<div class="text text-4">Please Join Us To Celebrate</div>
+<div class="text text-5">Magizh Mithran’s</div>
+<div class="text text-6">Birthday Party</div>
+<div class="text text-7">On</div>
+<div class="text text-8">MAY</div>
+<div class="text text-9">20th</div>
+<div class="text text-10">At</div>
+<div class="text text-11">7PM</div>
+
+
+
+
+
+
+
 
 
   </div>
