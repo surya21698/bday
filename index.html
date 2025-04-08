@@ -8,34 +8,125 @@
     * { margin: 0; padding: 0; box-sizing: border-box; }
     html, body { width: 100%; height: 100%; overflow: hidden; font-family: 'Arial', sans-serif; }
 
+
+  .sky0 {
+      position: relative;
+      width: 100vw;
+      height: 100vh;
+      background: linear-gradient(to bottom, #658d9f, #c7c7c7);
+      overflow: hidden;
+	  display: block;
+    }
+	
+	.fade-out {
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
     .sky {
       position: relative;
       width: 100vw;
       height: 100vh;
       background: linear-gradient(to bottom, #aee1f9, #ffffff);
       overflow: hidden;
+	  display: none;
     }
+	
+	
+	 #triggerButton {
+      position: absolute;
+      bottom: 10vh;
+      left: 22vh;
+      padding: 10px 20px;
+      font-size: 16px;
+      background-color: #3498db;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      z-index: 999;
+    }
+
+    #triggerButton:hover {
+      background-color: #2980b9;
+    }
+	
+	
+	
+	
+	
+	
+	
 
     .bear {
       position: absolute;
       width: 25vw;
-      top: -30vh;
-      right: -30vw;
-      animation: moveBear 2s ease-out forwards, bearSwing 4s ease-in-out infinite;
-      animation-delay: 1s, 4s;
+      top: 100vh;
+      right: 100vw;
+      animation: moveBear 8s ease-out forwards, bearSwing 19s ease-in-out infinite ;
+      animation-delay: 2s, 19s;
+      transform-origin: 50% 0%;
+      z-index: 10;
+    }
+	
+	   .teddy {
+      position: absolute;
+      width: 60vw;
+      top: 50vh;
+      right: 13vh;
+	  animation: teddySwing 1s ease-in-out infinite;
       transform-origin: 50% 0%;
       z-index: 10;
     }
 
+
+.teddy.animate {
+  animation: moveteddy 3s ease-out forwards ;
+  animation-delay: 0s; /* teddySwing starts after moveteddy ends */
+}	
+
+    @keyframes moveteddy {
+      0% { top: 50vh;  }
+	  0% { transform: rotate(0deg); }
+	  20% { transform: rotate(5deg); }
+	  40% { transform: rotate(-5deg); }
+	  40% {  right: 20vw; }
+	  60% { transform: rotate(0deg); }
+	  80% { transform: rotate(-10deg); }
+      100% { top: -30vh; }
+	  100% { transform: rotate(0deg); }
+	  
+    }
+
+    @keyframes teddySwing {
+      0%, 100% { transform: rotate(0deg); }
+      25% { transform: rotate(2deg); }
+      75% { transform: rotate(-2deg); }
+    }
+
+
+
+
+
     @keyframes moveBear {
-      0% { top: -30vh; right: -30vw; }
-      100% { top: 0vh; right: 0vw; }
+      0% { top: 100vh; right: 40vw; }
+	  0% { transform: rotate(0deg); }
+	  10% { transform: rotate(0deg); }
+	  25% {  right: 35vw; }
+	  25% { transform: rotate(10deg); }
+	  50% { transform: rotate(-10deg); }
+	  50% {  right: 20vw; }
+	  65% { transform: rotate(0deg); }
+	  85% { transform: rotate(8deg); }
+      100% { top: -5vh; right: -17vw; }
+	  100% { transform: rotate(17deg); }
+	  
     }
 
     @keyframes bearSwing {
-      0%, 100% { transform: rotate(0deg); }
-      25% { transform: rotate(1.5deg); }
-      75% { transform: rotate(-1.5deg); }
+      0%, 100% { transform: rotate(17deg); }
+      25% { transform: rotate(18.5deg); }
+      75% { transform: rotate(15.5deg); }
     }
 
     .cloud, .cloud-left {
@@ -61,6 +152,12 @@
   animation: driftCloud 6s ease-in-out infinite;
 }
 
+	.cloud-static-sky0 {
+  position: absolute;
+  z-index: 2;
+  animation: driftCloud 6s ease-in-out infinite;
+}
+
 	
 	/* Gently floating clouds (stationary with slight movement) */
 @keyframes driftCloud {
@@ -72,18 +169,18 @@
 
 .airplane-layer {
   position: absolute;
-  width: 20vw;
-  top: 45vh;
+  width: 30vw;
+  top: 10vh;
   left: -40vw; /* Start off screen on the left */
   opacity: 0.5;
   z-index: 4;
-  animation: airplaneFlyRight 15s linear forwards, airplaneFloat 2s ease-in-out infinite;
+  animation: airplaneFlyRight 8s linear forwards, airplaneFloat 2s ease-in-out infinite;
   animation-delay: 0s; 
 }
 
 @keyframes airplaneFlyRight {
-  0%   { left: -30vw; }
-  100% { left: 100vw; }
+  0%   { left: 120vw; }
+  100% { left: -30vw; }
 }
 
 @keyframes airplaneFloat {
@@ -94,6 +191,7 @@
 @keyframes slideInRight {
   0% { right: -30vw; opacity: 0; }
   100% { right: var(--final-right); opacity: 0.5; }
+  
 }
 
 @keyframes slideInLeft {
@@ -234,20 +332,6 @@
   z-index: 20;
   white-space: nowrap;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 .text-2 {
@@ -433,19 +517,92 @@
   }
 }
 
-	
-	
+
 	
   </style>
+  <script>
+  function startTeddyAnimation() {
+    const sky0 = document.querySelector('.sky0');
+    const sky = document.querySelector('.sky');
+    const teddy = document.querySelector('.teddy');
+
+    if (teddy) {
+      teddy.classList.add('animate');
+
+      const onAnimationEnd = (event) => {
+        if (event.animationName === 'moveteddy') {
+          // Add fade-out class to sky0
+          sky0.classList.add('fade-out');
+
+          // After fade-out transition ends (1s), hide sky0 and show sky
+          setTimeout(() => {
+            sky0.style.display = 'none';
+            sky.style.display = 'block';
+          }, 1000); // match the fade-out duration
+
+          teddy.removeEventListener('animationend', onAnimationEnd);
+        }
+      };
+
+      teddy.addEventListener('animationend', onAnimationEnd);
+    }
+  }
+
+  window.addEventListener('DOMContentLoaded', () => {
+    const btn = document.getElementById('triggerButton');
+    if (btn) {
+      btn.addEventListener('click', startTeddyAnimation);
+    }
+  });
+</script>
+
+
 </head>
 <body>
+
+
+
+	<div class="sky0">
+
+<button id="triggerButton" onclick="showSky0()">Click</button>
+
+
+
+	 <!-- teddy -->
+    <img src="teddy.png" class="teddy"  />
+	
+	
+	
+	
+	
+	
+	<!-- layer1 left -->
+	<img src="small-cloud.png" class="cloud-static-sky0" style="top: -4vh; left: -10vw; width: 40vw; opacity: 1; animation: driftCloud 6s ease-in-out infinite;" />
+	<img src="small-cloud.png" class="cloud-static-sky0" style="top: 2vh; left: 10vw; width: 35vw; opacity: 1; animation: driftCloud 6s ease-in-out infinite;" />
+	<img src="small-cloud.png" class="cloud-static-sky0" style="top: 1vh; left: 30vw; width: 40vw; opacity: 1; animation: driftCloud 6s ease-in-out infinite; " />
+	<img src="small-cloud.png" class="cloud-static-sky0" style="top: 9vh; left: -15vw; width: 38vw; opacity: 1; animation: driftCloud 6s ease-in-out infinite;" />
+	<img src="small-cloud.png" class="cloud-static-sky0" style="top: 10vh; left: 10vw; width: 38vw; opacity: 1; animation: driftCloud 6s ease-in-out infinite;" />
+	<img src="small-cloud.png" class="cloud-static-sky0" style="top: -4vh; left: 26vw; width: 25vw; opacity: 1; animation: driftCloud 6s ease-in-out infinite; " />
+		
+		<!-- layer1 right -->
+	<img src="small-cloud.png" class="cloud-static-sky0" style="top: -4vh; left: 55vw; width: 25vw; opacity: 1; animation: driftCloud 6s ease-in-out infinite;" />
+	<img src="small-cloud.png" class="cloud-static-sky0" style="top: 3vh; left: 50vw; width: 40vw; opacity: 1; animation: driftCloud 6s ease-in-out infinite;" />
+	<img src="small-cloud.png" class="cloud-static-sky0" style="top: -4vh; left: 70vw; width: 50vw; opacity: 1; animation: driftCloud 6s ease-in-out infinite;" />
+	<img src="small-cloud.png" class="cloud-static-sky0" style="top: 12vh; left: 38vw; width: 40vw; opacity: 1; animation: driftCloud 6s ease-in-out infinite; " />
+	<img src="small-cloud.png" class="cloud-static-sky0" style="top: 10vh; left: 68vw; width: 45vw; opacity: 1; animation: driftCloud 6s ease-in-out infinite;" />
+
+
+	
+	
+	 </div>
+
   <div class="sky">
     <!-- Bear -->
-    <img src="bear.png" class="bear" alt="Bear Balloon"  />
+    <img src="bear.png" class="bear"  />
 	
 	
 	<!-- Airplane layer (teddy bear in airplane) -->
-<img src="aircaraft.png" class="airplane-layer" style="opacity: 0.5;" />
+<img src="aircaraft.png" class="airplane-layer" style="opacity: 1;" />
 
 	
 	
@@ -485,20 +642,6 @@
 
 
     <!-- Text -->
-<div class="text text-1">Our little prince</div>
-<div class="text text-2">Is Turning</div>
-<div class="text text-3">ONE</div>
-<div class="text text-4">Please Join Us To Celebrate</div>
-<div class="text text-5">Magizh Mithran’s</div>
-<div class="text text-6">Birthday Party</div>
-<div class="text text-7">On</div>
-<div class="text text-8">MAY</div>
-<div class="text text-9">20th</div>
-<div class="text text-10">At</div>
-<div class="text text-11">7PM</div>
-
-
-
 
 
 
