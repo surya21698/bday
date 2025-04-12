@@ -60,7 +60,7 @@
 
     .bear {
       position: absolute;
-      width: 25vw;
+      width: 35vw;
       top: 100vh;
       right: 100vw;
       animation: moveBear 8s ease-out forwards, bearSwing 19s ease-in-out infinite ;
@@ -118,15 +118,15 @@
 	  50% {  right: 20vw; }
 	  65% { transform: rotate(0deg); }
 	  85% { transform: rotate(8deg); }
-      100% { top: -5vh; right: -17vw; }
-	  100% { transform: rotate(17deg); }
+      100% { top: -5vh; right: -14vw; }
+	  100% { transform: rotate(7deg); }
 	  
     }
 
     @keyframes bearSwing {
-      0%, 100% { transform: rotate(17deg); }
-      25% { transform: rotate(18.5deg); }
-      75% { transform: rotate(15.5deg); }
+      0%, 100% { transform: rotate(7deg); }
+      25% { transform: rotate(8.5deg); }
+      75% { transform: rotate(5.5deg); }
     }
 
     .cloud, .cloud-left {
@@ -265,9 +265,7 @@
   left: 50%;
   transform: translateX(-50%);
   font-size: clamp(16px, 5vw, 32px);
-  font-weight: bold;
   color: white;
-  text-shadow: 2px 2px 5px black;
   opacity: 0;
   z-index: 20;
   white-space: nowrap;
@@ -303,125 +301,82 @@
 }
 
 .text-1 {
-  position: absolute;
-  top: 18vh;
-  left: 50%;
-  transform: translateX(-50%);
-  font-size: clamp(16px, 5vw, 32px);
-  font-weight: bold;
-  opacity: 0;
-  color: white;
-  padding: 0.2em 0.8em;
-  background: linear-gradient(
-    90deg,
-    red,
-    orange,
-    yellow,
-    green,
-    blue,
-    indigo,
-    violet,
-    red
-  );
-  background-size: 400%;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  animation: throwText 1.8s ease-out forwards, rainbowShimmer 2.5s linear infinite;
+  top: 12vh;
+  left: 20vh;
+  font-size: 6vw;
+   font-weight: bolder;
+   font-style: italic;
+  font-family: Bougainvillea;
+  color: #785744;
+  animation: throwText 1.8s ease-out forwards;
   animation-delay: 5s, 7s;
-  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
-  z-index: 20;
-  white-space: nowrap;
 }
 
-
 .text-2 {
-  top: 25vh;
+  top: 20.5vh;
+  left: 20.5vh;
+  font-size: 6vw;
+  font-family: Bougainvillea;
+  color: #251d1a;
  animation: scalePop 1s ease-out forwards;
   animation-delay: 8.3s;
 }
 
 .text-3 {
-  top: 32vh;
+  top: 29vh;
+  color: #785744;
+  font-size: 18vw;
+  font-weight: normal;
+  font-family: Berlin Sans FB;
   animation: scalePop 1s ease-out forwards;
   animation-delay: 9.3s;
 }
 
 .text-4 {
-  top: 38vh;
+  top: 40vh;
+  color: #251d1a;
+  font-size: 4vw;
+  font-family: Bougainvillea;
   animation: fadeInUp 1s ease-out forwards;
   animation-delay: 10s;
 }
 
 
 .text-5 {
-  position: absolute;
-  top: 42vh;
-  left: 39%;
-  transform: translateX(-50%);
-  font-size: clamp(16px, 8vw, 32px);
-  font-weight: bold;
-  opacity: 0;
-  color: white;
-  padding: 0.2em 0.8em;
-  background: linear-gradient(
-    90deg,
-    red,
-    orange,
-    yellow,
-    green,
-    blue,
-    indigo,
-    violet,
-    red
-  );
-  background-size: 400%;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  animation: throwText 2s ease-out forwards, rainbowShimmer 6.5s linear infinite;
+  top: 47vh;
+  color: #785744;
+  font-size: 11vw;
+  font-family: Harlow Solid;
+  font-style: Italic;
+  animation: throwText 2s ease-out forwards;
   animation-delay: 10.5s, 7s;
-  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
-  z-index: 20;
-  white-space: nowrap;
 }
 
 
 
 
 .text-6 {
-  top: 50vh;
+ top: 53vh;
+    left: 33vh;
+  color: #251d1a;
+  font-size: 7.5vw;
+  font-family: Bougainvillea;
   animation: swirlIn 1s ease-out forwards;
   animation-delay: 10.8s;
 }
 
-.text-7 {
-  top: 56vh;
-  animation: bounceInLeft 1s ease-out forwards;
-  animation-delay: 11s;
-}
 
-.text-8 {
-  top: 62vh;
+
+.text-7 {
+ top: 70vh;
+  color: #251d1a;
+   font-family: Myriad Pro;
+   font-size: 6vw;
+   font-weight: bold;
   animation: bounceInRight 1s ease-out forwards;
   animation-delay: 11.5s;
 }
 
-.text-9 {
-  top: 68vh;
-  animation: zoomIn 1s ease-out forwards;
-  animation-delay: 12s;
-}
-
-.text-10 {
-  top: 74vh;
-  animation: flipDown 1s ease-out forwards;
-  animation-delay: 12.5s;
-}
-
-.text-11 {
-  top: 80vh;
-  animation: scalePop 1s ease-out forwards;
-  animation-delay: 13s;
-}
 
 @keyframes slideDrop {
   0% { transform: translateX(-50%) translateY(-50px); opacity: 0; }
@@ -485,7 +440,7 @@
 
 
     @media (max-width: 600px) {
-      .bear { width: 35vw; }
+      .bear { width: 45vw; }
       .cloud, .cloud-left { width: 20vw; }
       .layer, .layer-left { width: 28vw; }
     }
@@ -577,19 +532,19 @@
 	
 	
 	<!-- layer1 left -->
-	<img src="small-cloud.png" class="cloud-static-sky0" style="top: -4vh; left: -10vw; width: 40vw; opacity: 1; animation: driftCloud 6s ease-in-out infinite;" />
-	<img src="small-cloud.png" class="cloud-static-sky0" style="top: 2vh; left: 10vw; width: 35vw; opacity: 1; animation: driftCloud 6s ease-in-out infinite;" />
-	<img src="small-cloud.png" class="cloud-static-sky0" style="top: 1vh; left: 30vw; width: 40vw; opacity: 1; animation: driftCloud 6s ease-in-out infinite; " />
-	<img src="small-cloud.png" class="cloud-static-sky0" style="top: 9vh; left: -15vw; width: 38vw; opacity: 1; animation: driftCloud 6s ease-in-out infinite;" />
-	<img src="small-cloud.png" class="cloud-static-sky0" style="top: 10vh; left: 10vw; width: 38vw; opacity: 1; animation: driftCloud 6s ease-in-out infinite;" />
-	<img src="small-cloud.png" class="cloud-static-sky0" style="top: -4vh; left: 26vw; width: 25vw; opacity: 1; animation: driftCloud 6s ease-in-out infinite; " />
+	<img src="cloud1.png" class="cloud-static-sky0" style="top: -4vh; left: -10vw; width: 40vw; opacity: 1; animation: driftCloud 6s ease-in-out infinite;" />
+	<img src="cloud1.png" class="cloud-static-sky0" style="top: 2vh; left: 10vw; width: 35vw; opacity: 1; animation: driftCloud 6s ease-in-out infinite;" />
+	<img src="cloud3.png" class="cloud-static-sky0" style="top: 1vh; left: 30vw; width: 40vw; opacity: 1; animation: driftCloud 6s ease-in-out infinite; " />
+	<img src="cloud3.png" class="cloud-static-sky0" style="top: 9vh; left: -15vw; width: 38vw; opacity: 1; animation: driftCloud 6s ease-in-out infinite;" />
+	<img src="cloud1.png" class="cloud-static-sky0" style="top: 10vh; left: 10vw; width: 38vw; opacity: 1; animation: driftCloud 6s ease-in-out infinite;" />
+	<img src="cloud1.png" class="cloud-static-sky0" style="top: -4vh; left: 26vw; width: 25vw; opacity: 1; animation: driftCloud 6s ease-in-out infinite; " />
 		
 		<!-- layer1 right -->
-	<img src="small-cloud.png" class="cloud-static-sky0" style="top: -4vh; left: 55vw; width: 25vw; opacity: 1; animation: driftCloud 6s ease-in-out infinite;" />
-	<img src="small-cloud.png" class="cloud-static-sky0" style="top: 3vh; left: 50vw; width: 40vw; opacity: 1; animation: driftCloud 6s ease-in-out infinite;" />
-	<img src="small-cloud.png" class="cloud-static-sky0" style="top: -4vh; left: 70vw; width: 50vw; opacity: 1; animation: driftCloud 6s ease-in-out infinite;" />
-	<img src="small-cloud.png" class="cloud-static-sky0" style="top: 12vh; left: 38vw; width: 40vw; opacity: 1; animation: driftCloud 6s ease-in-out infinite; " />
-	<img src="small-cloud.png" class="cloud-static-sky0" style="top: 10vh; left: 68vw; width: 45vw; opacity: 1; animation: driftCloud 6s ease-in-out infinite;" />
+	<img src="cloud1.png" class="cloud-static-sky0" style="top: -4vh; left: 55vw; width: 25vw; opacity: 1; animation: driftCloud 6s ease-in-out infinite;" />
+	<img src="cloud3.png" class="cloud-static-sky0" style="top: 3vh; left: 50vw; width: 40vw; opacity: 1; animation: driftCloud 6s ease-in-out infinite;" />
+	<img src="cloud1.png" class="cloud-static-sky0" style="top: -4vh; left: 70vw; width: 50vw; opacity: 1; animation: driftCloud 6s ease-in-out infinite;" />
+	<img src="cloud3.png" class="cloud-static-sky0" style="top: 12vh; left: 38vw; width: 40vw; opacity: 1; animation: driftCloud 6s ease-in-out infinite; " />
+	<img src="cloud1.png" class="cloud-static-sky0" style="top: 10vh; left: 68vw; width: 45vw; opacity: 1; animation: driftCloud 6s ease-in-out infinite;" />
 
 
 	
@@ -646,11 +601,8 @@
 <div class="text text-4">Please Join Us To Celebrate</div>
 <div class="text text-5">Magizh Mithran’s</div>
 <div class="text text-6">Birthday Party</div>
-<div class="text text-7">On</div>
-<div class="text text-8">MAY</div>
-<div class="text text-9">20th</div>
-<div class="text text-10">At</div>
-<div class="text text-11">7PM</div>
+<div class="text text-7">MAY 20th At 7PM</div>
+
 
 
 
