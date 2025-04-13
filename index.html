@@ -437,7 +437,8 @@
   position: absolute;
   top: 70vh;
   left: 36vw; 
-  color: #251d1a;
+  color: #785744;
+  font-weight: bold;
   font-family: "Myriad Pro", sans-serif;
   font-size: 4.5vw;
   opacity: 0;
@@ -562,17 +563,21 @@
     const teddy = document.querySelector('.teddy');
 	const song = document.querySelector('.song'); // Select the audio element
 
+
   if (song) {
     song.play(); // Start playing the song
   }
 
+	
     if (teddy) {
       teddy.classList.add('animate');
+	  
 
       const onAnimationEnd = (event) => {
         if (event.animationName === 'moveteddy') {
           // Add fade-out class to sky0
           sky0.classList.add('fade-out');
+		  
 
           // After fade-out transition ends (1s), hide sky0 and show sky
           setTimeout(() => {
