@@ -88,8 +88,8 @@
       width: 35vw;
       top: 100vh;
       right: 100vw;
-      animation: moveBear 5s ease-out forwards, bearSwing 2s ease-in-out infinite ;
-      animation-delay: 2s, 7s;
+      animation: moveBear 7s ease-out forwards, bearSwing 2s ease-in-out infinite ;
+      animation-delay: 0s, 7s;
       transform-origin: 50% 0%;
       z-index: 10;
     }
@@ -133,7 +133,7 @@
 	  40% {  right: 20vw; }
 	  60% { transform: rotate(0deg); }
 	  80% { transform: rotate(-10deg); }
-      100% { top: -30vh; }
+      100% { top: -40vh; }
 	  100% { transform: rotate(0deg); }
 	  
     }
@@ -211,7 +211,7 @@
   position: absolute;
   width: 30vw;
   top: 10vh;
-  left: -40vw; /* Start off screen on the left */
+  left: -10vw; /* Start off screen on the left */
   opacity: 0.5;
   z-index: 4;
   animation: airplaneFlyRight 7s linear forwards, airplaneFloat 2s ease-in-out infinite;
@@ -226,17 +226,6 @@
 @keyframes airplaneFloat {
   0%, 100% { transform: translateY(0); }
   50% { transform: translateY(-5px); }
-}
-
-@keyframes slideInRight {
-  0% { right: -30vw; opacity: 0; }
-  100% { right: var(--final-right); opacity: 0.5; }
-  
-}
-
-@keyframes slideInLeft {
-  0% { left: -30vw; opacity: 0; }
-  100% { left: var(--final-left); opacity: 0.4; }
 }
 
 
@@ -474,7 +463,20 @@
     }
 	
 	
-	@keyframes slideInRight {
+	
+@keyframes slideInRight {
+  0% { right: -30vw; opacity: 0; }
+  100% { right: var(--final-right); opacity: 0.5; }
+  
+}
+
+@keyframes slideInLeft {
+  0% { left: -30vw; opacity: 0; }
+  100% { left: var(--final-left); opacity: 0.4; }
+}
+
+
+@keyframes slideInRight {
   0% {
     right: -30vw;
     transform: rotate(5deg);
