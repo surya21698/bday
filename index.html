@@ -4,9 +4,19 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Birthday Animation</title>
-  <link rel="preload" href="bougainvillea.ttf" as="font" type="ttf" crossorigin="anonymous">
+  <link rel="preload" href="bougainvillea.ttf" as="font" type="font/ttf" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
 
+<!-- Preload background images -->
+<link rel="preload" as="image" href="bg0.png">
+<link rel="preload" as="image" href="bg.png">
+<link rel="preload" as="image" href="1.jpg">
+
+<!-- Preload key animated elements -->
+<link rel="preload" as="image" href="bear.jpg">
+<link rel="preload" as="image" href="small-cloud.jpg">
+<link rel="preload" as="image" href="Layer-3.png">
+<link rel="preload" as="image" href="aircraft.png">
 
   
 
@@ -57,7 +67,7 @@
 	
 	.fade-out {
   opacity: 0;
-  transition: opacity 0.5s ease;
+  transition: opacity 0.1s ease;
 }
 
     .sky {
@@ -90,8 +100,7 @@
     left: 25vw;
     width: 50vw;
     overflow: hidden;
-	  animation: teddyfloatUpDown 6s ease-in-out infinite,teddysquish 10s ease-in-out infinite;;
-	  teddysquish
+	  animation: teddyfloatUpDown 6s ease-in-out infinite, teddysquish 5s ease-in-out infinite;
       transform-origin: 50% 0%;
       z-index: 10;
     }
@@ -371,7 +380,7 @@
   }
   100% {
     opacity: 1;
-    transform: translate(-50%) scale(1);
+    transform: translateX(-50%) scale(1);
   }
 }
 
@@ -499,6 +508,11 @@
     const sky0 = document.querySelector('.sky0');
     const sky = document.querySelector('.sky');
     const teddy = document.querySelector('.teddy');
+	const song = document.querySelector('.song'); // Select the audio element
+
+  if (song) {
+    song.play(); // Start playing the song
+  }
 
     if (teddy) {
       teddy.classList.add('animate');
@@ -512,7 +526,7 @@
           setTimeout(() => {
             sky0.style.display = 'none';
             sky.style.display = 'block';
-          }, 1000); // match the fade-out duration
+          }, 10); // match the fade-out duration
 
           teddy.removeEventListener('animationend', onAnimationEnd);
         }
@@ -534,6 +548,10 @@
 </head>
 <body>
 
+	<audio class="song" loop>
+        <source src="piano.mp3" ></source>
+	   Your browser isn't invited for super fun audio time.
+    </audio>
 
 
 	<div class="sky0">
