@@ -24,7 +24,6 @@
 
   
   <style>
-  
     * { margin: 0; padding: 0; box-sizing: border-box; }
     html, body { width: 100%; height: 100%; overflow: hidden; font-family: 'Arial', sans-serif; }
 
@@ -545,9 +544,6 @@
 
 	
   </style>
-  
-  
-  
   <script>
   function startTeddyAnimation() {
     const sky0 = document.querySelector('.sky0');
@@ -556,10 +552,8 @@
     const song = document.querySelector('.song'); // Select the audio element
     const arrow = document.querySelector('.arrow'); // Select the arrow
 
-    // Check if the audio exists
     if (song) {
-      song.currentTime = 0; // Reset audio to the beginning if needed
-      song.play(); // Play the audio when triggered by user action (swipe)
+      song.play(); // Start playing the song
     }
 
     if (arrow) {
@@ -601,11 +595,6 @@
           startTeddyAnimation();
         }
       });
-
-      // Simulate a touch event to bypass the need for a first click
-      // After page load, trigger a touchstart on the teddy element
-      const touchEvent = new Event('touchstart');
-      teddy.dispatchEvent(touchEvent);
     }
   });
 </script>
