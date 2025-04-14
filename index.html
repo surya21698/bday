@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Birthday Animation</title>
+  <link rel="preload" href="bougainvillea.ttf" as="font" type="font/ttf" crossorigin="anonymous">
+  <link rel="preload" href="harlow.ttf" as="font" type="font/ttf" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+
+<!-- Preload background images -->
+<link rel="preload" as="image" href="bg0.png">
+
+
+<!-- Preload key animated elements -->
+<link rel="preload" as="image" href="bear.png">
+<link rel="preload" as="image" href="small-cloud.png">
+<link rel="preload" as="image" href="Layer-3.png">
+<link rel="preload" as="image" href="aircraft.png">
+
+  
+
+
+
+  
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body { width: 100%; height: 100%; overflow: hidden; font-family: 'Arial', sans-serif; }
+
+@font-face {
+  font-family: 'Bougainvillea';
+  src: url('bougainvillea.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+
+
+
+@font-face {
+  font-family: 'harlow Solid';
+  src: url('harlow.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+
+
+
+  .sky0 {
+      position: relative;
+      width: 100vw;
+      height: 100vh;
+      background: linear-gradient(to bottom, #63c0ec, #c3dcec);
+      overflow: hidden;
+	  display: block;
+    }
+	
+.bgbottom {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100vw;
+    overflow: hidden;
+    display: block;
+}
+	
+	.fade-out {
+  opacity: 0;
+  transition: opacity 0.1s ease;
+}
+
+    .sky {
+      position: relative;
+      width: 100vw;
+      height: 100vh;
+      background: linear-gradient(to bottom, #63c0ec, #c3dcec);
+      overflow: hidden;
+	  display: none;
+    }
+	
+	
+
+	
+
+    .bear {
+      position: absolute;
+      width: 35vw;
+      top: 100vh;
+      right: 100vw;
+      animation: moveBear 7s ease-out forwards, bearSwing 2s ease-in-out infinite ;
+      animation-delay: 0s, 7s;
+      transform-origin: 50% 0%;
+      z-index: 10;
+    }
+	
+	
+.arrow {
+    position: absolute;
+    top: 45%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transform: rotate(180deg);
+    cursor: pointer;
+}
+
+.arrow span {
+    display: block;
+    width: 6.5vw;
+    height: 6.5vw;
+    border-bottom: 5px solid #c59969;
+    border-right: 5px solid #c59969;
+    margin: -10px;
+    animation: animate 2s infinite;
+}
+
+.arrow span:nth-child(2) {
+    animation-delay: -0.2s;
+}
+
+.arrow span:nth-child(3) {
+    animation-delay: -0.4s;
+}
+
+@keyframes animate {
+    0% {
+        opacity: 0;
+        transform: rotate(45deg) translate(-20px, -20px);
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+        transform: rotate(45deg) translate(20px, 20px);
+    }
+}
+	
+	
+	
+	
+	
+	
+	.teddy {
+    position: absolute;
+    bottom: 5vh;
+    left: 25vw;
+    width: 50vw;
+    overflow: hidden;
+	  animation: teddyfloatUpDown 6s ease-in-out infinite, teddysquish 5s ease-in-out infinite;
+      transform-origin: 50% 0%;
+      z-index: 10;
+    }
+
+
+
+    @keyframes teddyfloatUpDown {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(10px); }
+    }
+	
+	
+	
+    @keyframes teddysquish {
+      0%, 100% { transform: scale(1, 1); }
+      50% { transform: scale(1, 0.9); }
+    }
+
+
+.teddy.animate {
+  animation: moveteddy 3s ease-out forwards ;
+  animation-delay: 0s; /* teddySwing starts after moveteddy ends */
+}	
+
+    @keyframes moveteddy {
+      0% { top: 50vh;  }
+	  0% { transform: rotate(0deg); }
+	  20% { transform: rotate(5deg); }
+	  40% { transform: rotate(-5deg); }
+	  40% {  right: 20vw; }
+	  60% { transform: rotate(0deg); }
+	  80% { transform: rotate(-10deg); }
+      100% { top: -30vh; width: 45vw; }
+	  100% { transform: rotate(0deg); }
+	  
+    }
+
+    @keyframes teddySwing {
+      0%, 100% { transform: rotate(0deg); }
+      25% { transform: rotate(2deg); }
+      75% { transform: rotate(-2deg); }
+    }
+
+
+
+
+
+    @keyframes moveBear {
+      0% { top: 100vh; right: 40vw; width: 45vw; }
+	  0% { transform: rotate(0deg); }
+	  10% { transform: rotate(0deg); }
+	  25% {  right: 35vw; }
+	  25% { transform: rotate(10deg); }
+	  50% { transform: rotate(-10deg); }
+	  50% {  right: 20vw; }
+	  65% { transform: rotate(0deg); }
+	  85% { transform: rotate(8deg); }
+      100% { top: -5vh; right: -14vw; }
+	  100% { transform: rotate(7deg); }
+	  
+    }
+
+    @keyframes bearSwing {
+      0%, 100% { transform: rotate(7deg); }
+      25% { transform: rotate(8.5deg); }
+      75% { transform: rotate(5.5deg); }
+    }
+
+    .cloud, .cloud-left {
+      position: absolute;
+      animation: moveCloud 5s linear infinite, squish 3s ease-in-out infinite alternate;
+      animation-delay: 0s, 0s;
+      z-index: 2;
+    }
+
+    .cloud {
+      left: 100%;
+      animation-name: moveCloud, squish;
+    }
+
+    .cloud-left {
+      left: -30vw;
+      animation-name: moveCloudLeft, squish;
+    }
+	
+	.cloud-static {
+  position: absolute;
+  z-index: 2;
+  animation: driftCloud 6s ease-in-out infinite;
+}
+
+	.cloud-static-sky0 {
+  position: absolute;
+  z-index: 2;
+  animation: driftCloud 6s ease-in-out infinite;
+}
+
+	
+	/* Gently floating clouds (stationary with slight movement) */
+@keyframes driftCloud {
+  0%, 100% { transform: translateX(0) scale(1, 1); }
+  25% { transform: translateX(-5px) scale(1.05, 0.95); }
+  50% { transform: translateX(5px) scale(0.95, 1.05); }
+  75% { transform: translateX(-3px) scale(1.02, 0.98); }
+}
+
+.airplane-layer {
+  position: absolute;
+  width: 30vw;
+  top: 10vh;
+  left: -10vw; /* Start off screen on the left */
+  opacity: 0.5;
+  z-index: 4;
+  animation: airplaneFlyRight 6s linear forwards, airplaneFloat 2s ease-in-out infinite;
+  animation-delay: 0s; 
+}
+
+@keyframes airplaneFlyRight {
+  0%   { left: 120vw; }
+  100% { left: -30vw; }
+}
+
+@keyframes airplaneFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-5px); }
+}
+
+
+
+
+.layer-right {
+  position: absolute;
+  animation: slideInRight var(--slide-duration) ease-out forwards,
+             floatUpDown 10s ease-in-out infinite,
+             swing 3s ease-in-out infinite,
+             squish 1.5s ease-in-out infinite;
+  animation-delay: var(--slide-delay), 0s, 0s, 0s;
+  z-index: 3;
+  top: var(--top);
+  right: var(--final-right);
+  opacity: 0.5;
+}
+
+
+.layer-left {
+  position: absolute;
+  animation: slideInLeft var(--slide-duration) ease-out forwards,
+             floatUpDown 10s ease-in-out infinite,
+             swing 3s ease-in-out infinite,
+             squish 1.5s ease-in-out infinite;
+  animation-delay: var(--slide-delay), 0s, 0s, 0s;
+  z-index: 3;
+  top: var(--top);
+  left: var(--final-left);
+  opacity: 0;
+}
+
+
+
+
+
+
+    @keyframes moveCloud {
+      0% { left: 100vw; }
+      100% { left: -30vw; }
+    }
+
+    @keyframes moveCloudLeft {
+      0% { left: -30vw; }
+      100% { left: 100vw; }
+    }
+
+    @keyframes squish {
+      0%, 100% { transform: scale(1, 1); }
+      50% { transform: scale(1.1, 0.9); }
+    }
+
+    @keyframes swing {
+      0%, 100% { transform: rotate(0deg); }
+      50% { transform: rotate(2deg); }
+    }
+
+    @keyframes floatUpDown {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+	
+	
+.text {
+  position: absolute;
+  opacity: 0;
+  z-index: 20;
+  white-space: nowrap;
+}
+
+
+.text-1 {
+  top: 12vh;
+  left: 10vh;
+  font-size: 6vw;
+  font-weight: bolder;
+  font-style: italic;
+  font-family: Bougainvillea;
+  color: #785744;
+  position: absolute;
+  opacity: 0;
+  animation: backInDown 1.8s ease-out forwards;
+  animation-delay: 5.5s;
+}
+
+.text-2 {
+  top: 20.5vh;
+  left: 20.5vh;
+  font-size: 6vw;
+  position: absolute;
+  opacity: 0;
+  font-family: Bougainvillea;
+  color: #251d1a;
+ animation: backInLeft 1.8s ease-out forwards;
+  animation-delay: 6.5s;
+}
+
+.text-3 {
+  top: 29vh;
+  left: 50%;
+  color: #785744;
+  font-size: 18vw;
+  font-weight: normal;
+  font-family: Berlin Sans FB;
+  animation: scalePop 2s ease-out forwards;
+  animation-delay: 8.5s;
+}
+
+.text-4 {
+  position: absolute;
+  top: 40vh;
+  left: 100px;
+  color: #251d1ac7;
+  font-size: 4vw;
+  font-weight: bold;
+  font-family: Bougainvillea;
+  opacity: 0;
+  animation: fadeInRight 1s ease-out forwards;
+  animation-delay: 9.5s;
+}
+
+
+.text-5 {
+  position: absolute;
+  top: 48vh;
+  left: 50%;
+  transform: translate( -50%); /* perfect centering */
+  color: #785744;
+  font-size: 11vw;
+  font-family: Harlow Solid;
+  font-style: italic;
+  opacity: 0;
+  animation: zoomInUp 1.5s ease-out forwards;
+  animation-delay: 10.5s;
+}
+
+@keyframes zoomInUp {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, 100%) scale(0.3);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(-50%) scale(1);
+  }
+}
+
+.text-6 {
+  position: absolute;
+  top: 55vh;
+  left: 13vh;
+  color: #251d1a;
+  font-size: 7.5vw;
+  font-family: Bougainvillea;
+  opacity: 0;
+  animation: customBounceIn 1.2s ease-out forwards;
+  animation-delay: 11.8s;
+  z-index: 10;
+}
+
+.text-7 {
+  position: absolute;
+  top: 70vh;
+  left: 36vw; 
+  color: #785744;
+  font-weight: bold;
+  font-family: "Myriad Pro", sans-serif;
+  font-size: 4.5vw;
+  opacity: 0;
+  animation: customBounceInUp 1.2s ease-out forwards;
+  animation-delay: 12s;
+  z-index: 10;
+}
+
+@keyframes customBounceIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.3) translateY(-50%);
+  }
+  60% {
+    opacity: 1;
+    transform: scale(1.05) translateY(10%);
+  }
+  80% {
+    transform: scale(0.95) translateY(-2%);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+@keyframes customBounceInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(100%);
+  }
+  60% {
+    opacity: 1;
+    transform: translateY(-20%);
+  }
+  80% {
+    transform: translateY(10%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+
+@keyframes slideDrop {
+  0% { transform: translateX(-50%) translateY(-50px); opacity: 0; }
+  100% { transform: translateX(-50%) translateY(0); opacity: 1; }
+}
+
+@keyframes bounceIn {
+  0% { transform: translateY(-80px); opacity: 0; }
+  60% { transform: translateY(10px); opacity: 1; }
+  100% { transform: translateY(0); }
+}
+
+@keyframes scalePop {
+  0% { transform: translateX(-50%) scale(0.3); opacity: 0; }
+  100% { transform: translateX(-50%) scale(1); opacity: 1; }
+}
+
+
+
+
+    @media (max-width: 600px) {
+      .bear { width: 45vw; }
+      .cloud, .cloud-left { width: 20vw; }
+      .layer, .layer-left { width: 28vw; }
+    }
+	
+	
+
+	
+	@keyframes slideInRight {
+  0% {
+    right: -30vw;
+    transform: rotate(5deg);
+    opacity: 0;
+  }
+  100% {
+    right: var(--final-right);
+    transform: rotate(0deg);
+    opacity: 0.5;
+  }
+}
+
+
+@keyframes slideInLeft {
+  0% {
+    left: -30vw;
+    transform: rotate(-5deg);
+    opacity: 0;
+  }
+  100% {
+    left: var(--final-left);
+    transform: rotate(0deg);
+    opacity: 0.4;
+  }
+}
+
+
+
+	
+  </style>
+  <script>
+  function startTeddyAnimation() {
+    const sky0 = document.querySelector('.sky0');
+    const sky = document.querySelector('.sky');
+    const teddy = document.querySelector('.teddy');
+    const song = document.querySelector('.song'); // Select the audio element
+    const arrow = document.querySelector('.arrow'); // Select the arrow
+
+    if (song) {
+      song.play(); // Start playing the song
+    }
+
+    if (arrow) {
+      arrow.style.display = 'none'; // Hide the arrow once triggered
+    }
+
+    if (teddy) {
+      teddy.classList.add('animate');
+
+      const onAnimationEnd = (event) => {
+        if (event.animationName === 'moveteddy') {
+          sky0.classList.add('fade-out');
+
+          setTimeout(() => {
+            sky0.style.display = 'none';
+            sky.style.display = 'block';
+          }, 10); // match the fade-out duration
+
+          teddy.removeEventListener('animationend', onAnimationEnd);
+        }
+      };
+
+      teddy.addEventListener('animationend', onAnimationEnd);
+    }
+  }
+
+  window.addEventListener('DOMContentLoaded', () => {
+    let startY = 0;
+    const teddy = document.getElementById('triggerButton');
+
+    if (teddy) {
+      teddy.addEventListener('touchstart', (e) => {
+        startY = e.touches[0].clientY;
+      });
+
+      teddy.addEventListener('touchend', (e) => {
+        const endY = e.changedTouches[0].clientY;
+        if (startY - endY > 30) { // swipe up detected
+          startTeddyAnimation();
+        }
+      });
+    }
+  });
+</script>
+
+
+</head>
+<body>
+
+	<audio class="song" loop>
+        <source src="piano.mp3" ></source>
+	   Your browser isn't invited for super fun audio time.
+    </audio>
+
+
+	<div class="sky0">
+
+	<div class="arrow">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+
+
+	<img src="bg0.png" class="bgbottom"  />
+	
+	
+		 <!-- teddy -->
+	
+	<img src="bear.png" id="triggerButton" class="teddy"  />
+
+
+	
+	<img src="Layer-3.png" class="layer-right layer-float layer-rotate" style="--top: 45vh; --final-right: 5vw; --slide-duration: 3s; --slide-delay: 0s; width: 10vw; z-index: 1;" />
+	<img src="Layer-3.png" class="layer-right layer-float layer-rotate" style="--top: -2vh; --final-right: 48vw; --slide-duration: 6s; --slide-delay: 0s; width: 10vw; z-index: 1;" />
+
+
+	<!-- Left-side layers -->
+	<img src="Layer-3.png" class="layer-left layer-float" style="--top: -4vh;  --final-left: 0vw; --slide-duration: 2.2s; --slide-delay: 0.1s; width: 28vw;  z-index: 1;" />
+
+
+	
+	
+	
+	 </div>
+
+  <div class="sky">
+    <!-- Bear -->
+	
+
+	
+    <img src="bear.png" class="bear"  />
+	
+	
+	<!-- Airplane layer (teddy bear in airplane) -->
+<img src="aircaraft.png" class="airplane-layer" style="opacity: 1;" />
+
+	
+	
+<!-- Stationary drifting clouds -->
+	<img src="small-cloud.png" class="cloud-static" style="top: 24vh; left: 35vw; width: 30vw; opacity: 0.5; animation: driftCloud 6s ease-in-out infinite;" />
+	<img src="small-cloud.png" class="cloud-static" style="top: 55vh; left: 80vw; width: 30vw; opacity: 0.4; animation: driftCloud 8s ease-in-out infinite;" />
+	<img src="small-cloud.png" class="cloud-static" style="top: -8vh; left: -14vw; width: 48vw; opacity: 1; animation: driftCloud 6s ease-in-out infinite;" />
+	<img src="small-cloud.png" class="cloud-static" style="top: 55vh; left: -20vw; width: 40vw; opacity: 0.4; animation: driftCloud 8s ease-in-out infinite;" />
+	
+	<img src="small-cloud.png" class="cloud-static" style="top: 35vh; left: 90vw; width: 18vw; opacity: 0.5; animation: driftCloud 6s ease-in-out infinite;" />
+	<img src="small-cloud.png" class="cloud-static" style="top: -2vh; left: 55vw; width: 20vw; opacity: 0.5; animation: driftCloud 6s ease-in-out infinite;" />
+	<img src="small-cloud.png" class="cloud-static" style="top: 25vh; left: 2vw; width: 20vw; opacity: 0.5; animation: driftCloud 6s ease-in-out infinite;" />
+
+
+    <!-- Clouds -->
+    <img src="small-cloud.png" class="cloud" style="top: 10vh; width: 14vw; opacity: 0.5; animation-duration: 25s, 2.5s;" />
+    <img src="small-cloud.png" class="cloud-left" style="top: 20vh; width: 12vw; opacity: 0.5; animation-duration: 18s, 2.7s;" />
+	<img src="small-cloud.png" class="cloud-left" style="top: 18vh; width: 12vw; opacity: 0.5; animation-duration: 18s, 2.7s; animation-delay: 7s; " />
+	
+    <img src="small-cloud.png" class="cloud" style="top: 45vh; width: 18vw; opacity: 0.5; animation-duration: 30s, 3s;" />
+    <img src="small-cloud.png" class="cloud-left" style="top: 38vh; width: 20vw; opacity: 0.4; animation-duration: 25s, 3s;" />
+
+
+	
+	<!-- Right-side layers -->
+	
+	<img src="Layer-3.png" class="layer-right layer-float layer-rotate" style="--top: 45vh; --final-right: 5vw; --slide-duration: 3s; --slide-delay: 0s; width: 10vw; z-index: 1;" />
+	<img src="Layer-3.png" class="layer-right layer-float layer-rotate" style="--top: -2vh; --final-right: 48vw; --slide-duration: 6s; --slide-delay: 0s; width: 10vw; z-index: 1;" />
+
+
+	<img src="Layer-3.png" class="layer-right layer-float" style="--top: 30vh;  --final-right: 10vw; --slide-duration: 9s; --slide-delay: 0s; width: 18vw; z-index: 1; " />
+
+
+	<!-- Left-side layers -->
+	<img src="Layer-3.png" class="layer-left layer-float" style="--top: -4vh;  --final-left: 0vw; --slide-duration: 2.2s; --slide-delay: 0.1s; width: 28vw;  z-index: 1;" />
+	<img src="Layer-3.png" class="layer-left layer-float" style="--top: 36vh;  --final-left: -10vw; --slide-duration: 2.8s; --slide-delay: 0.3s; width: 24vw; z-index: 1;" />
+	<img src="Layer-3.png" class="layer-left layer-float" style="--top: 65vh;  --final-left: 20vw; --slide-duration: 6s; --slide-delay: 0.1s; width: 10vw;  z-index: 1;" />
+
+    <!-- Text -->
+<div class="text text-1">Our little prince</div>
+<div class="text text-2">Is Turning</div>
+<div class="text text-3">ONE</div>
+<div class="text text-4">Please Join Us To  Celebrate</div>
+<div class="text text-5">Magizh Mithran’s</div>
+<div class="text text-6">Birthday Party</div>
+<div class="text text-7">MAY 20 At 7PM</div>
+
+
+
+
+
+
+
+
+  </div>
+  
+  
+</body>
+</html>
